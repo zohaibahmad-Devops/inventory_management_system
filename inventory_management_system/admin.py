@@ -6,7 +6,7 @@ from .models import Stock
 class StockCreateAdmin(admin.ModelAdmin):
     list_display = ['category', 'item_name', 'quantity', 'issue_by']
     form = StockCreateForm
-    list_filter = ['category','item_name']
+    list_filter = ['category']
     search_fields = ['category', 'item_name']
 
 
