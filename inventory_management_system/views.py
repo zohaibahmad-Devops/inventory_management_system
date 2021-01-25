@@ -5,5 +5,5 @@ def index_view(request):
     return render(request, 'index.html')
 
 
-def addproduct_view(request):
+def input_product_view(request):
     return render(request, 'addproduct.html')
