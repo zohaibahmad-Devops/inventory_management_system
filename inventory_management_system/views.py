@@ -1,20 +1,31 @@
+
 from django.shortcuts import render
 from django.contrib import messages
-from inventory_management_system.models import InputProduct, Expenses, Login
+from inventory_management_system.models import InputProduct, Expenses
 
 
 def index_view(request):
     return render(request, 'index.html')
 
 
-def login_view(request):
-    if request.method == "POST":
-        user_name = request.POST.get('user_name')
-        password = request.POST.get('password')
-        login = Login.objects.create(user_name=user_name, password=password)
-        messages.success(request, 'Your are Successfully Login')
+def bill_view(request):
+    products = InputProduct.objects.all()
 
-    return render(request, 'index.html')
+    context = {
+        'products': products
+    }
+
+    return render(request, 'bill.html' , context=context)
+
+
+# def login_view(request):
+#     if request.method == "POST":
+#         user_name = request.POST.get('user_name')
+#         password = request.POST.get('password')
+#         login = Login.objects.create(user_name=user_name, password=password)
+#         messages.success(request, 'Your are Successfully Login')
+#
+#     return render(request, 'login.html')
 
 
 def input_product_view(request):
