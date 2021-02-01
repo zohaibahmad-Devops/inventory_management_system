@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %} Customer {% endblock title %}
+<!-- Left Panel -->
+
+{% block content %}
+    <h3 class="row justify-content-center align-items-center" style="padding-bottom: 2%; background-color: inherit">Customer Info</h3>
+    <div class="row justify-content-center align-items-center">
+
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row mb-4">
+
+                <div class="col">
+                    <div class="form-outline">
+
+                        <label class="form-label">Customer Name</label>
+                        <input type="text" class="form-control item" id="customer_name" name="customer_name" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input -->
+
+            <!-- Text input -->
+            <div class="form-outline mb-4">
+
+                <label class="form-label">Identity</label>
+                <input type="text" id="identity" name="identity" class="form-control" required>
+            </div>
+
+
+
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Add Customer</button>
+
+        </form>
+
+    </div>
+{% endblock content %}
+<script>
+    (function ($) {
+        "use strict";
+
+        jQuery('#vmap').vectorMap({
+            map: 'world_en',
+            backgroundColor: null,
+            color: '#ffffff',
+            hoverOpacity: 0.7,
+            selectedColor: '#1de9b6',
+            enableZoom: true,
+            showTooltip: true,
+            values: sample_data,
+            scaleColors: ['#1de9b6', '#03a9f5'],
+            normalizeFunction: 'polynomial'
+        });
+    })(jQuery);
+</script>
+
+
+</html>

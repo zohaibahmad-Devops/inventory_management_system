@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block title %} Bill {% endblock title %}
+{% load static %}
+<!-- Left Panel -->
+{% block content %}
+    <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 padding">
+    <div class="card">
+        <div class="card-header p-4">
+            <div class="float-right">
+                <h3 class="mb-0">Bill</h3>
+                <p id="date"></p>
+
+                <script>
+                    var today = new Date();
+
+                    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                    document.getElementById("date").innerHTML = date;
+                </script>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-4">
+                <div class="col-sm-6">
+                    <h5 class="mb-3">From:</h5>
+                    <h3 class="text-dark mb-1">Zohaib's Bakery</h3>
+                    <div>Address xyz</div>
+                    <div>Address xyz</div>
+                    <div>Email: zohaib@gmail.com</div>
+                    <div>Phone: 03030303030</div>
+                </div>
+
+                <div class="col-sm-6 ">
+                    {% for data in customers,  %}
+                    <h4 class="text-dark mb-1">To: {{ data.customer_name }}</h4>
+                    <div><h5 class="text-dark mb-1">Customer Identity: {{ data.identity }}</h5></div>
+                    {% endfor %}
+                </div>
+
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h5>Add Products to Bill:</h5>
+                </div>
+                <div class="card-body">
+                    {% for data in products %}
+                        <a href="#"
+                           onclick="addItem({{ data.id }}, {{ data.item_name }}, {{ data.price_out }})"
+                           class="btn btn-outline-secondary">
+                            {{ data.item_name }}
+                        </a>
+                    {% endfor %}
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title"><strong>Order summary</strong></h4>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-condensed">
+                                                    <thead>
+                                                    <tr>
+                                                        <td><strong>Item</strong></td>
+                                                        <td class="text-right"><strong>Price</strong></td>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="summary-table-body">
+                                                    <tr id="total-tr">
+                                                        <td class="thick-line text-right"><strong>Total: </strong></td>
+                                                        <td class="thick-line text-right"><strong>₹0 </strong></td>
+                                                    </tr>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-group special" role="group">
+                                {% csrf_token %}
+                                <button type="button" class="btn btn-success">
+{#                                                                            onclick="postOrder('{% url 'bill' %}', '{{ customer.identity }}')">Bill#}
+                                </button>
+                                <button type="button" class="btn" onclick="clearAllItems()">Clear</button>
+                                <button type="button" class="btn btn-danger"
+                                        onclick="location.href='{% url 'Home' %}'">Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer bg-white">
+                <p class="mb-0">Thanks for visiting us.</p>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}
+<script src="{% static 'assets/js/script.js' %}"></script>
+<script>
+
+
+    (function ($) {
+        "use strict";
+
+        jQuery('#vmap').vectorMap({
+            map: 'world_en',
+            backgroundColor: null,
+            color: '#ffffff',
+            hoverOpacity: 0.7,
+            selectedColor: '#1de9b6',
+            enableZoom: true,
+            showTooltip: true,
+            values: sample_data,
+            scaleColors: ['#1de9b6', '#03a9f5'],
+            normalizeFunction: 'polynomial'
+        });
+    })(jQuery);
+</script>
+
+
+</html>

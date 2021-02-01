@@ -1,21 +1,30 @@
-
 from django.shortcuts import render
 from django.contrib import messages
-from inventory_management_system.models import InputProduct, Expenses
+from inventory_management_system.models import InputProduct, Expenses, Customer
 
 
 def index_view(request):
     return render(request, 'index.html')
 
 
+def customer_view(request):
+    if request.method == "POST":
+        customer_name = request.POST.get('customer_name')
+        identity = request.POST.get('identity')
+        customer = Customer.objects.create(customer_name=customer_name, identity=identity)
+
+    return render(request, 'customer.html')
+
+
 def bill_view(request):
     products = InputProduct.objects.all()
-
+    customers = Customer.objects.all()
     context = {
-        'products': products
+        'products': products,
+        'customers': customers
     }
 
-    return render(request, 'bill.html' , context=context)
+    return render(request, 'bill.html', context=context)
 
 
 # def login_view(request):

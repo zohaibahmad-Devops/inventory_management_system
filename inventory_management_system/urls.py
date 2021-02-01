@@ -13,11 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from django.urls import path
 
-from inventory_management_system import views
+from inventory_management_system import views, settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +27,9 @@ urlpatterns = [
     path('addproduct', views.input_product_view, name="addproduct"),
     path('expenses', views.expenses_view, name="expenses"),
     path('bill', views.bill_view, name="bill"),
+    path('customer', views.customer_view, name="customer"),
     # path('login', views.login_view, name="login"),
 
 ]
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %} Expenses {% endblock title %}
+<!-- Left Panel -->
+
+{% block content %}
+    <h3 class="row justify-content-center align-items-center" style="padding-bottom: 2%; background-color: inherit">Add
+        Expenses</h3>
+    <div class="row justify-content-center align-items-center">
+
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+
+            <!-- Text input -->
+            <div class="form-outline mb-4">
+
+                <label class="form-label">Rent</label>
+                <input type="number" id="rent" name="rent" class="form-control" required>
+            </div>
+
+            <!-- Text input -->
+            <div class="form-outline mb-4">
+
+                <label class="form-label">Gas Bill</label>
+                <input type="number" id="gas_bill" name="gas_bill" class="form-control" required>
+            </div>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+
+                <label class="form-label">Electricity Bill</label>
+                <input type="number" id="electricity_bill" name="electricity_bill" class="form-control" required>
+            </div>
+
+            <div class="form-outline mb-4">
+
+                <label class="form-label">Maintenance</label>
+                <input type="number" id="maintenance" name="maintenance" class="form-control" required>
+            </div>
+
+            <div class="form-outline mb-4">
+
+                <label class="form-label">Staff Salaries</label>
+                <input type="number" class="form-control" id="staff_salaries" name="staff_salaries" required>
+            </div>
+
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Add Expenses</button>
+        </form>
+    </div>
+
+{% endblock content %}
+<script>
+    (function ($) {
+        "use strict";
+
+        jQuery('#vmap').vectorMap({
+            map: 'world_en',
+            backgroundColor: null,
+            color: '#ffffff',
+            hoverOpacity: 0.7,
+            selectedColor: '#1de9b6',
+            enableZoom: true,
+            showTooltip: true,
+            values: sample_data,
+            scaleColors: ['#1de9b6', '#03a9f5'],
+            normalizeFunction: 'polynomial'
+        });
+    })(jQuery);
+</script>
+
+
+</html>
