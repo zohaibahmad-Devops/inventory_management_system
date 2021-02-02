@@ -18,7 +18,7 @@ def customer_view(request):
 
 def bill_view(request):
     products = InputProduct.objects.all()
-    customers = Customer.objects.filter(identity='2')
+    customers = Customer.objects.filter(identity=1)
     context = {
         'products': products,
         'customers': customers

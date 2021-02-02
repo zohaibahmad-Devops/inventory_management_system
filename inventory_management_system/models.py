@@ -42,3 +42,7 @@ class OrderItem(models.Model):
     product = models.ForeignKey(InputProduct, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     time = models.DateTimeField(auto_now=True)
+
+
+class Bill(models.Model):
+    identity = models.ForeignKey(Customer, on_delete=models.CASCADE)
