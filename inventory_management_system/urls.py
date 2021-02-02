@@ -26,7 +26,7 @@ urlpatterns = [
     path('Home', views.index_view, name="Home"),
     path('addproduct', views.input_product_view, name="addproduct"),
     path('expenses', views.expenses_view, name="expenses"),
-    path('bill', views.bill_view, name="bill"),
+    path('customer/bill', views.bill_view, name="bill"),
     path('customer', views.customer_view, name="customer"),
     # path('login', views.login_view, name="login"),
 
