@@ -23,7 +23,7 @@ def bill_view(request):
         'products': products,
         'customers': customers
     }
-
+ 
     return render(request, 'bill.html', context=context)
 
 
